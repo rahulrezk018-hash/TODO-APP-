@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <title>Todo App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+ <style>
+   body{
+     background:linear-gradient(to right ,rgba(44, 144, 227, 1),rgba(3, 72, 139, 1));
+     background-size:cover;
+    margin:0;
+    font-family:arial,sans-serif;
+    padding-bottom:170px;
+   }
+   /*-----------navbar------*/
+   .nav{
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     padding:30px 22px;
+     top:0;
+     position:fixed;
+     width:100%;
+     background:white;
+   }
+   .nav h1{
+     color:rgba(34, 32, 158, 0.58);
+     font-family:arial;
+     font-size:60px;
+   }
+   .menu{
+     display:none;
+flex-direction: column ;
+     align-items: center;
+     background:#2E73F4;
+     width:60%;
+     padding:24px;
+     top:0;
+     right:0;
+     border-radius:10px;
+   }
+   .menu a{
+     color:#2905FF;
+     font-size:34px;
+     background:white;
+     padding:7px;
+     width:200px;
+text-decoration:none;
+cursor:pointer;
+border-radius:7px;
+   }
+   .menu h3{
+     color:#F7FFFE;
+     margin:20px;
+     font-size:20px;
+     
+   }
+   .menu1 button{
+     padding:6px 12px;
+font-size:29px;
+width:200px;
+cursor:pointer ;
+color:#2905FF;
+   }
+   .menu1{
+     display:flex;
+flex-direction: column ;
+gap:27px;
+   }
+ .men button{
+   color:blue;
+   font-size:45px;
+   margin:50px;
+ }
+ .search-control{
+   display:flex;
+   margin-left:2cm;
+ }
+ .search{
+   display:flex;
+   margin-top:15vh;
+   background:white;
+   width:500px;
+   padding:20px;
+   border:1px solid black ;
+   border-radius:10px;
+ }
+ .search-input{
+   background:none;
+   outline:none;
+   border: none;
+   width:500px;
+   font-size:20px;
+   color:black;
+ }
+ .search button{
+   background: none;
+   color:black;
+   border:none;
+   font-size:27px;
+   margin:10px;
+ }
+ .select-control{
+   display:flex;
+   justify-content:flex-start;
+   align-items:center;
+margin-left:2cm;
+ }
+ .select{
+   padding:2px 20px;
+   font-size:20px;
+   margin-top:20px;
+   border:1px solid gray;
+   border-radius:1px;
+ }
+ .input{
+   padding:17px 26px;
+   width:300px;
+   border-radius:12px;
+   margin-left:1cm;
+   font-size:20px;
+ }
+ .input-button button{
+   padding:12px;
+   font-size:20px;
+   margin:10px;
+   border-radius:10px;
+   border:none;
+   transition: all 0.4s ease;
+   cursor:pointer;
+ }
+ .input-button button:hover{
+   transform:translateX(-6px);
+   background:#0015FD;
+   color:white;
+ }
+ .input-select{
+   padding:12px;
+   font-size:16px;
+   border-radius:7px;
+   cursor:pointer;
+ }
+ .card-center{
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   flex-wrap:wrap;
+   margin-top:2vh;
+   gap:20px;
+ }
+ .card{
+   background: linear-gradient(to right,#E3EFFF,#587192);
+   color:black;
+   padding:20px;
+   width:600px;
+   border-radius:20px;
+   height:auto;
+   border:1px solid white ;
+box-shadow:0 2px 3px rgba(0,0,0,0.4);
+ }
+ .card button{
+   font-size:28px;
+   margin:10px;
+   color:rgba(0, 87, 201, 0.92);
+ }
+ .card h3{
+   color:green;
+ }
+ .complete button{
+   margin:15px;
+   color: white;
+   padding:7px;
+   border:1px solid blue;
+   border-radius:17px;
+   cursor:pointer;
+   background:rgba(6, 94, 209, 0.72);
+ }
+.complete button:Disabled{
+  cursor:not-allowed;
+  opacity:0.5;
+}
+ .total-all{
+   display:flex;
+   justify-content: space-between ;
+   align-items:center;
+ }
+ .total-all button{
+   margin:20px;
+   width:140px;
+   padding:20px;
+   font-size:23px;
+   border-radius:12px;
+   cursor:pointer;
+   border:1px solid white;
+   background: linear-gradient(to right,rgba(177, 211, 255, 1),rgba(46, 140, 179, 1));
+ }
+ .total-all h2{
+   background:linear-gradient(to right,rgba(215, 222, 232, 1),rgba(0, 83, 187, 1));
+   padding:20px;
+   width:200px;
+   border-radius:20px;
+   opacity:80%;
+   border:1px solid white;
+ }
+  .footer{
+    background: linear-gradient(to right,rgba(255, 255, 255, 1),rgba(6, 94, 209, 0.72));
+    color:black;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    padding:30px;
+    text-align:center;
+  }
+   /*-------Mobile-responsive*/
+   @media (max-width:768px){
+        .nav{
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     padding:7px 20px;
+     top:0;
+     position:fixed;
+     width:100%;
+     background:white;
+   }
+   .nav h1{
+     color:rgba(34, 32, 158, 0.58);
+     font-family:arial;
+     font-size:22px;
+   }
+   .menu{
+     display:none;
+flex-direction: row;
+     align-items: center;
+     background:#2E73F4;
+     width:60%;
+     padding:24px;
+     top:0;
+     right:0;
+     border-radius:10px;
+   }
+   .menu a{
+     color:#2905FF;
+     font-size:12px;
+     background:white;
+     padding:7px;
+     width:200px;
+text-decoration:none;
+cursor:pointer;
+border-radius:7px;
+   }
+   .menu h3{
+     color:#F7FFFE;
+     margin:20px;
+     font-size:17px;
+     
+   }
+   .menu1 button{
+     padding:6px 12px;
+font-size:12px;
+width:200px;
+cursor:pointer ;
+color:#2905FF;
+   }
+   .menu1{
+     display:flex;
+flex-direction: column ;
+gap:27px;
+   }
+ .men button{
+   color:blue;
+   font-size:15px;
+   margin:20px;
+ }
+ .search-control{
+   display:flex;
+   margin-left:10px;
+ }
+ .search{
+   display:flex;
+   margin-top:15vh;
+   background:white;
+   max-width:60%;
+   padding:2px 20px;
+   border:1px solid black ;
+   border-radius:1px;
+ }
+ .search-input{
+   background:none;
+   outline:none;
+   border: none;
+   width:90%;
+   padding:1px;
+   font-size:12px;
+   border-radius:3px;
+   color:black;
+ }
+ .search button{
+   background: none;
+   color:black;
+   border:none;
+   font-size:10px;
+   margin:10px;
+ }
+ .select-control{
+   display:flex;
+   justify-content:flex-start;
+   align-items:center;
+margin-left:10px;
+ }
+ .select{
+   padding:2px 10px;
+   font-size:12px;
+   margin-top:20px;
+   border:1px solid gray;
+   border-radius:1px;
+ }
+ .input{
+   padding:7px 26px;
+   width:100px;
+   border-radius:2px;
+   font-size:12px;
+   border:none;
+ }
+ .input-button button{
+   padding:8px;
+   font-size:10px;
+   margin:10px;
+   border-radius:10px;
+   border:none;
+   transition: all 0.4s ease;
+   cursor:pointer;
+ }
+ .input-button button:hover{
+   transform:translateX(-6px);
+   background:#0015FD;
+   color:white;
+ }
+ hr{
+  font-size:1px;
+ }
+ .input-select{
+   padding:2px;
+   font-size:12px;
+   border-radius:7px;
+   cursor:pointer;
+ }
+ .card-center{
+   display:flex;
+   flex-direction: column;
+   align-items:center;
+   flex-wrap:wrap;
+   margin-top:2vh;
+   gap:20px;
+ }
+ .card{
+   background: linear-gradient(to right,#E3EFFF,#587192);
+   color:black;
+   padding:20px;
+   width:200px;
+   border-radius:20px;
+   height:auto;
+   border:1px solid white ;
+   font-size:10px;
+box-shadow:0 2px 3px rgba(0,0,0,0.4);
+ }
+ .card button{
+   font-size:16px;
+   margin:10px;
+   color:rgba(0, 87, 201, 0.92);
+ }
+ .card h3{
+   color:green;
+ }
+ .complete button{
+   margin:15px;
+   color: white;
+   padding:7px;
+   border:1px solid blue;
+   border-radius:17px;
+   cursor:pointer;
+   font-size:12px;
+   background:rgba(6, 94, 209, 0.72);
+ }
+.complete button:Disabled{
+  cursor:not-allowed;
+  opacity:0.5;
+}
+ .total-all{
+   display:flex;
+   justify-content: space-between ;
+   align-items:center;
+ }
+ .total-all button{
+   margin:20px;
+   width:100px;
+   padding:4px 9px;
+   font-size:12px;
+   height:30px;
+   border-radius:12px;
+   cursor:pointer;
+   border:1px solid white;
+   background: linear-gradient(to right,rgba(177, 211, 255, 1),rgba(46, 140, 179, 1));
+ }
+ .total-all h2{
+   background:linear-gradient(to right,rgba(215, 222, 232, 1),rgba(0, 83, 187, 1));
+   padding:9px 10px;
+   width:90px;
+   font-size:7px;
+   border-radius:20px;
+   opacity:80%;
+   border:1px solid white;
+ }
+  .footer{
+    background: linear-gradient(to right,rgba(255, 255, 255, 1),rgba(6, 94, 209, 0.72));
+    color:black;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    padding:20px;
+    text-align:center;
+    font-size:10px;
+  }
+   }
+   /*-----Laptop-responsive*/
+   @media (min-width:1024px){
+        .nav{
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     padding:30px 22px;
+     top:0;
+     position:fixed;
+     width:100%;
+     background:white;
+   }
+   .nav h1{
+     color:rgba(34, 32, 158, 0.58);
+     font-family:arial;
+     font-size:60px;
+   }
+   .menu{
+     display:none;
+flex-direction: column ;
+     align-items: center;
+     background:#2E73F4;
+     width:60%;
+     padding:24px;
+     top:0;
+     right:0;
+     border-radius:10px;
+   }
+   .menu a{
+     color:#2905FF;
+     font-size:34px;
+     background:white;
+     padding:7px;
+     width:200px;
+text-decoration:none;
+cursor:pointer;
+border-radius:7px;
+   }
+   .menu h3{
+     color:#F7FFFE;
+     margin:20px;
+     font-size:20px;
+     
+   }
+   .menu1 button{
+     padding:6px 12px;
+font-size:29px;
+width:200px;
+cursor:pointer ;
+color:#2905FF;
+   }
+   .menu1{
+     display:flex;
+flex-direction: column ;
+gap:27px;
+   }
+ .men button{
+   color:blue;
+   font-size:45px;
+   margin:50px;
+ }
+ .search-control{
+   display:flex;
+   margin-left:2cm;
+ }
+ .search{
+   display:flex;
+   margin-top:15vh;
+   background:white;
+   width:500px;
+   padding:20px;
+   border:1px solid black ;
+   border-radius:10px;
+ }
+ .search-input{
+   background:none;
+   outline:none;
+   border: none;
+   width:500px;
+   font-size:20px;
+   color:black;
+ }
+ .search button{
+   background: none;
+   color:black;
+   border:none;
+   font-size:27px;
+   margin:10px;
+ }
+ .select-control{
+   display:flex;
+   justify-content:flex-start;
+   align-items:center;
+margin-left:2cm;
+ }
+ .select{
+   padding:2px 20px;
+   font-size:20px;
+   margin-top:20px;
+   border:1px solid gray;
+   border-radius:1px;
+ }
+ .input{
+   padding:17px 26px;
+   width:300px;
+   border-radius:12px;
+   margin-left:1cm;
+   font-size:20px;
+ }
+ .input-button button{
+   padding:12px;
+   font-size:20px;
+   margin:10px;
+   border-radius:10px;
+   border:none;
+   transition: all 0.4s ease;
+   cursor:pointer;
+ }
+ .input-button button:hover{
+   transform:translateX(-6px);
+   background:#0015FD;
+   color:white;
+ }
+ .input-select{
+   padding:12px;
+   font-size:16px;
+   border-radius:7px;
+   cursor:pointer;
+ }
+ .card-center{
+   display:flex;
+   flex-direction:row;
+   align-items:center;
+   flex-wrap:wrap;
+   margin-top:2vh;
+   gap:20px;
+ }
+ .card{
+   background: linear-gradient(to right,#E3EFFF,#587192);
+   color:black;
+   padding:20px;
+   width:600px;
+   border-radius:20px;
+   height:auto;
+   border:1px solid white ;
+box-shadow:0 2px 3px rgba(0,0,0,0.4);
+ }
+ .card button{
+   font-size:28px;
+   margin:10px;
+   color:rgba(0, 87, 201, 0.92);
+ }
+ .card h3{
+   color:green;
+ }
+ .complete button{
+   margin:15px;
+   color: white;
+   padding:7px;
+   border:1px solid blue;
+   border-radius:17px;
+   cursor:pointer;
+   background:rgba(6, 94, 209, 0.72);
+ }
+.complete button:Disabled{
+  cursor:not-allowed;
+  opacity:0.5;
+}
+ .total-all{
+   display:flex;
+   justify-content: space-between ;
+   align-items:center;
+ }
+ .total-all button{
+   margin:20px;
+   width:140px;
+   padding:20px;
+   font-size:23px;
+   border-radius:12px;
+   cursor:pointer;
+   border:1px solid white;
+   background: linear-gradient(to right,rgba(177, 211, 255, 1),rgba(46, 140, 179, 1));
+ }
+ .total-all h2{
+   background:linear-gradient(to right,rgba(215, 222, 232, 1),rgba(0, 83, 187, 1));
+   padding:20px;
+   width:200px;
+   border-radius:20px;
+   opacity:80%;
+   border:1px solid white;
+ }
+  .footer{
+    background: linear-gradient(to right,rgba(255, 255, 255, 1),rgba(6, 94, 209, 0.72));
+    color:black;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    padding:30px;
+    text-align:center;
+  }
+   }
+</style>
+<body>
+  <div class="nav">
+    <h1>Todo App</h1>
+    <div class="men">
+      <button id="Btn" onclick="OpenMenu()">☰</button>
+    </div>
+    <div class="menu"id="menu">
+      <h2>Welcome ↓</h2>
+      <h3 id="show-name"></h3>
+      <hr>
+      <div class="menu1">
+      <a href="index.html"><i class="fa-solid fa-cubes"></i> Todo-App</a>
+      <a href="about.html"><i class="fa-solid fa-user"></i> About</a>
+      <button id="login-btn" onclick="login()"><i class="fa-solid fa-user-plus"></i> Login</button>
+      <button id="logout-btn" onclick="logout()">Logout <i class="fa-solid fa-right-to-bracket"></i><span style="color:black;"></button>
+      </div>
+    </div>
+  </div>
+  <div class="search-control">
+  <div class="search">
+  <input class="search-input" type="search"placeholder="Search" id="search">
+  <button onclick="Apply()"><i class="fa-solid fa-search"></i></button>
+  </div>
+  </div>
+  <div class="select-control">
+  <select class="select" id="select1">
+    <option value="">none</option>
+    <option value="coding">Coding</option>
+    <option value="study">Study</option>
+    <option value="bgmi">Bgmi</option>
+    <option value="running">Running</option>
+    <option value="eating">Eating </option>
+    <option value="revision">Revision </option>
+  </select>
+  </div>
+<hr>
+<hr>
+<div class="input-button">
+<input class="input" type="text"placeholder="Enter Your Task" id="addTask">
+  <select class="input-select" id="select">
+    <option value="">none</option>
+    <option value="coding">Coding</option>
+    <option value="study">Study</option>
+    <option value="bgmi">Bgmi</option>
+    <option value="running">Running</option>
+    <option value="eating">Eating </option>
+    <option value="revision">Revision </option>
+  </select>
+<button onclick="addTask()">Add Task</button>
+</div>
+<hr>
+<div class="card-center" id="showItems">
+</div>
+<hr>
+<div class="total-all">
+  <h2> Total: <span id="total"></span></h2>
+  <button onclick="ClearAll()">All clear </button>
+</div>
+<div class="footer">
+  <h3>Devloped by Rajab ali</h3>
+</div>
+</body>
+<script>
+let name=localStorage.getItem("username");
+let user=localStorage.getItem("login");
+//button--//
+let loginBtn=document.getElementById("login-btn");
+let logoutBtn=document.getElementById("logout-btn");
+let show=document.getElementById("show-name");
+if(user === "true"){
+  loginBtn.style.display="none";
+  logoutBtn.style.display="flex";
+  show.innerHTML=name;
+}
+else{
+   loginBtn.style.display = "flex";
+ logoutBtn.style.display = "none";
+ show.innerHTML="";
+}
+function login(){
+  window.location.href="login.html";
+}
+function logout(){
+  localStorage.removeItem("username");
+  localStorage.removeItem("login");
+  location.reload();
+}
+  //toggle-humburger-menu//
+  window.addEventListener("DOMContentLoaded",function(){
+    let menu=document.getElementById("menu");
+    menu.style.display="none";  
+    
+  });
+function OpenMenu(){
+  let menu=document.getElementById("menu");
+  let btn=document.getElementById("Btn");
+  if(menu.style.display==="none"){
+    menu.style.display="block";
+    btn.innerHTML="✖️";
+  }
+  else{
+    menu.style.display="none";
+    btn.innerHTML="☰";
+  }
+}
+  let eDit=null;
+function addTask(){
+  let task=JSON.parse(localStorage.getItem("task"))||[];
+  let add=document.getElementById("addTask").value;
+  let select=document.getElementById("select").value;
+  //fin logic//
+  let find=task.find(item => item.name === add && item.select === select);
+  if(find){
+    find.qty=(find.qty || 1)+1;
+  }
+  else if(eDit !== null){
+    task[eDit].name=add;
+    task[eDit].select=select;
+    eDit=null;
+  }
+  else{
+    task.push({
+      name:add,
+      select:select,
+      qty:1,
+      complete:false
+      
+    });
+  }
+  localStorage.setItem("task",JSON.stringify(task));
+  ShowItems();
+  
+}
+function ShowItems(filtered){
+  let task=filtered||JSON.parse(localStorage.getItem("task"))||[];
+let show=document.getElementById("showItems");
+show.innerHTML="";
+task.forEach((item,index)=>{
+  show.innerHTML+=`
+  <div class="card">
+    <h2><span>Name : </span>${item.name}</h2>
+    <h2><span> Task : </span>${item.select}</h2>
+    <h4><span>Qty : </span>${item.qty}</h4>
+    <h3><span style='color:black;'>Status: </span>${item.complete ? "<span style='text-decoration: line-through;'>Complete</span>":"<span style='color:red;'>Pending</span>"}</h3>
+    <button onclick='Edit(${index})'><i class="fa-solid fa-pen-to-square"></i></button>
+    <button onclick='Remove(${index})'><i class="fa-solid fa-trash"></i></button>
+<div class="complete">
+    <button onclick='Complete(${index})'${item.complete ? "Disabled":""}>🟢Complete</button>
+    </div>
+</div>
+</div>
+`;
+});
+if(task.length === 0){
+  show.innerHTML="<h1 style='margin-left:10cm; color:white;'>Your list is empty❗ Add your first task to get started.📝</h1>";
+}
+Total();
+}
+//  Delete//
+function Remove(index){
+  let task=JSON.parse(localStorage.getItem("task"))||[];
+  task.splice(index,1);
+  localStorage.setItem("task",JSON.stringify(task));
+  ShowItems();
+}
+//Search filter//
+function Apply(){
+  let task=JSON.parse(localStorage.getItem("task"))||[];
+  let search=document.getElementById("search").value.toLowerCase();
+   let select=document.getElementById("select1").value;
+  let filtered=task.filter(item => item.name.toLowerCase().includes(search) && item.select === select);
+  ShowItems(filtered);
+}
+//all Total//
+  function Total(){
+    let task=JSON.parse(localStorage.getItem("task"))||[];
+    let total=0;
+    task.forEach(item=>{
+      total +=item.qty;
+    });
+    document.getElementById("total").innerHTML=total;
+  }
+  //edit button//
+  function Edit(index){
+    let task=JSON.parse(localStorage.getItem("task"))||[];
+    document.getElementById("addTask").value=task[index].name;
+    document.getElementById("select").value=task[index].select;
+    eDit=index;
+    ShowItems();
+  }
+//complete button//
+function Complete(index){
+  let task=JSON.parse(localStorage.getItem("task"))||[];
+  task[index].complete=!task[index].complete;
+  localStorage.setItem("task",JSON.stringify(task));
+  ShowItems();
+}
+//All-clear button//
+  function ClearAll(){
+    localStorage.removeItem("task");
+    ShowItems();
+  }
+ShowItems();
+Total();
+</script>
+</html>
+        
+
+
+
+
+    
+    
+    
+    
+
+          
+    
+
+
+          
+        
+  
+    
+            
+

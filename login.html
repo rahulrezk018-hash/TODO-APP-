@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>LOGIN PAGE </title>
+  <style>
+  body{
+    background:linear-gradient(to right,#00263F,#095C93,#349DEE);
+    background-size:cover;
+    font-family:arial,sans-serif;
+  }
+  .content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+  .card{
+    background:#3CA6FF38;
+    color:white;
+    padding:20px 54px;
+    margin:12px;
+    border:1px solid white;
+    border-radius:12px;
+    text-align: center;
+    transition: 0.2s;
+    backdrop-filter:blur(45px);
+  }
+  .card:hover{
+    transform: translateY(-3px) scale(1.1);
+    background:#1192D275;
+  }
+  .input{
+    background:white;
+    color:black;
+    padding:15px 34px;
+    margin:12px;
+    font-size: 20px;
+    border:none;
+    text-align: center;
+    border-radius:10px;
+  }
+  .k button{
+    background:none;
+    padding: 0;
+    margin:0;
+    width:0;
+    border:none;
+    cursor:pointer;
+    font-size: 25px;
+  }
+  .k h1{
+    opacity:70%;
+    font-size:40px;
+    margin:30px;
+  }
+  .s{
+    background:white;
+    padding: 0;
+    color:black;
+    margin:10px;
+    border-radius: 12px;
+  }
+  .s h4{
+font-size:37px;
+  }
+  .login button{
+    background:white;
+    color:#107FDB;
+    padding:20px 37px;
+    margin:34px;
+    font-size: 25px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .popup{
+    width:100%;
+    height:100%;
+    position: fixed ;
+    top:0;
+    right:0;
+    left:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.9);
+  }
+  .popup-box{
+    background:white;
+    color:#0A3CD6;
+    padding:34px 34px;
+    margin:20px;
+    font-size:36px;
+    text-align:center;
+    border-radius:12px;
+    border:1px solid blue;
+    height:280px;
+  }
+  .popup h2{
+margin:60px;
+  }
+  .popup button{
+    background:#0A71D6;
+    color:white;
+margin-right:12cm;
+    padding:20px 45px;
+    border:none;
+    font-size:29px;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .load{
+    width:100%;
+    height:100%;
+    position: fixed ;
+    top:0;
+    right:0;
+    left:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.6);
+  }
+  .load h2{
+    animation:blink 2s infinite;
+    color:rgba(12, 240, 193, 0.9);
+  }
+  @keyframes blink{
+    0%{opacity:2;}
+    50%{opacity:0;}
+    100%{opacity:1;}
+  }
+  .input-box{
+    outline:none;
+    border:none;
+    width:400px;
+    font-size:24px;
+  }
+  i{
+    font-size:28px;
+  }
+  .se-log{
+    display:flex;
+    justify-content:center;
+  }
+  .se-log button {
+    display:none;
+    
+  }
+  @media (max-width:600px){
+      .content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+  .card{
+    background:#FFEFEC42;
+    color:white;
+    padding:20px 54px;
+    margin:12px;
+    border:1px solid white;
+    border-radius:12px;
+    text-align: center;
+    transition: 0.2s;
+    backdrop-filter:blur(45px);
+  }
+  .card:hover{
+    transform: translateY(-3px) scale(1.1);
+    background:#6A686770;
+  }
+  .input{
+    background:white;
+    color:black;
+    padding:5px 10px;
+    margin:2px;
+    font-size: 8px;
+    border:none;
+    text-align: center;
+    border-radius:10px;
+  }
+  .k button{
+    background:none;
+    padding: 0;
+    margin:0;
+    width:0;
+    border:none;
+    cursor:pointer;
+    font-size: 5px;
+  }
+  .k h1{
+    opacity:50%;
+    font-size:20px;
+    margin:30px;
+  }
+  .s{
+    background:white;
+    padding:0;
+    width:auto;
+    height:auto;
+    margin:10px;
+    border-radius: 12px;
+  }
+  .s h4{
+   font-size:17px;
+  }
+  .login button{
+    background:white;
+    color:orange;
+    padding:7px 5px;
+    margin:10px;
+    font-size:16px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  .popup{
+    width:100%;
+    height:100%;
+    position: fixed ;
+    top:0;
+    right:0;
+    left:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.9);
+  }
+  .popup-box{
+    background: linear-gradient(to right,#B4E0D5,#D7E0B4);
+    color:#4367D3;
+    padding:12px 34px;
+    margin:10px;
+    text-align:center;
+    border-radius:12px;
+    font-size:12px;
+    height:130px;
+  }
+  .popup button{
+    background:#0C75B9;
+    color:white;
+    padding:12px 45px;
+    margin:10px;
+   font-size:12px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .popup h2{
+    margin:10px;
+  }
+  .load{
+    width:100%;
+    height:100%;
+    position: fixed ;
+    top:0;
+    right:0;
+    left:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.6);
+  }
+  .load h2{
+    animation:blink 2s infinite;
+    color:rgba(12, 240, 193, 0.9);
+  }
+  @keyframes blink{
+    0%{opacity:2;}
+    50%{opacity:0;}
+    100%{opacity:1;}
+  }
+  .input-box{
+    outline:none;
+    border:none;
+    width:100px;
+    padding:7px;
+    font-size:9px;
+  }
+  i{
+    font-size:12px;
+  }
+  }
+  </style>
+  
+ <body>
+ <div class="content">
+   <div class="card">
+     <div class="k">
+     <h1>LOGIN NOW</h1>
+     <div class="input" id="name-input">
+  <i class="fa-solid fa-user">
+   </i>
+   <input class="input-box" type="text"placeholder="Enter name"id="name">
+     </div>
+   <br>
+   <div class="input" id="em">
+     <i class="fa-solid fa-envelope"></i>
+   <input class="input-box"id="email" type="text"placeholder="Enter email">
+   </div>
+   <br>
+   <div class="input"id="password-input">
+   <input class="input-box"id="password" type="password"placeholder="Enter password">
+   <button onclick="show()"><i class="fa-solid fa-eye"></i></button>
+   </div>
+   <br>
+   <input type="checkbox"><span style="font-size:27px;">Remember Me</span><br><br>
+     </div>
+     <div class="s">
+     <h4 id="msg"></h4>
+     </div>
+     <div class="login">
+     <button id="login" onclick="Login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+     <button id="signup"onclick="switchSignup()"><span style="color:blue;"><i class="fa-solid fa-user-plus"></i> Signup</span></button>
+     <div class="se-log">
+     <button id="signup1" onclick="signup()"><i class="fa-solid fa-user-plus"></i> Signup</button>
+     </div>
+     </div>
+   </div>
+ </div>
+ <div class="popup" id="popup">
+   <div class="popup-box">
+     <h2 id="text"> Your account has been Created </h2>
+     <button onclick="Close()">OK</button>
+   </div>
+ </div>
+ <div class="load" id="load">
+   <h2>Loading....</h2>
+ </div>
+</body>
+<script> 
+function switchSignup(){
+  document.querySelector("h1").innerText="SIGNUP NOW";
+  
+  let login=document.getElementById("login");
+  
+  let signup=document.getElementById("signup");
+  login.style.display="none";
+  signup.style.display="none";
+  //new button//
+  let signup1=document.getElementById("signup1");
+  signup1.style.display="flex";
+}
+function Login(){
+  let name=document.getElementById("name").value;
+  let email=document.getElementById("email").value;
+  let pass=document.getElementById("password").value;
+  let msg=document.getElementById("msg");
+  let user=JSON.parse(localStorage.getItem("user"))||[];
+  let find=user.find(u => u.email === email && u.pass === pass);
+  //input-borders//
+  let n=document.getElementById("name-input");
+  let e=document.getElementById("em");
+  let p=document.getElementById("password-input");
+  
+  if(name === "" || email === ""|| pass === ""){
+    Toast("Please fill in all the fields! ⚠️");
+    n.style.border="2px solid red";
+    e.style.border="2px solid red";
+    p.style.border="2px solid red";
+  }
+  else if(!email.includes("@gmail.com")){
+    msg.innerHTML="Invalid Email!";
+    e.style.border="2px solid red";
+}
+else if(pass.length < 6){
+  msg.innerHTML="Incorrect password! Please try again. 🔒";
+  p.style.border="2px solid red";
+}
+else if(!find){
+  msg.innerHTML="This email is not registered!";
+  e.style.border="2px solid red";
+}
+else{
+  msg.innerHTML="Welcome back! Login successful. 🎉";
+  //borders//
+   n.style.border="2px solid green";
+    e.style.border="2px solid green";
+    p.style.border="2px solid green";
+    localStorage.setItem("username",name);
+    localStorage.setItem("login","true");
+    localStorage.setItem("user",JSON.stringify(user));
+    window.location.href="index.html";
+}
+}
+//SIGNUP---PAGE//
+function signup(){
+  let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let pass = document.getElementById("password").value;
+let msg = document.getElementById("msg");
+let user=JSON.parse(localStorage.getItem("user"))||[];
+let find=user.find(item => item.email === email && item.pass === pass);
+//input-borders//
+let n = document.getElementById("name-input");
+let e = document.getElementById("em");
+let p = document.getElementById("password-input");
+
+if (name === "" || email === "" || pass === "") {
+  msg.innerHTML = "Please fill in all the required fields! ⚠️";
+  n.style.border = "2px solid red";
+  e.style.border = "2px solid red";
+  p.style.border = "2px solid red";
+}
+else if (!email.includes("@gmail.com")) {
+  msg.innerHTML = "please check your email ";
+  e.style.border = "2px solid red";
+}
+else if (pass.length < 6) {
+  msg.innerHTML = "cheeck your password";
+  p.style.border = "2px solid red";
+}
+else if(find){
+  msg.innerHTML="You are already logged in!";
+  msg.style.color="red";
+}
+else {
+  msg.innerHTML = "Account has created";
+  msg.style.color="blue";
+  //borders//
+  n.style.border = "2px solid green";
+  e.style.border = "2px solid green";
+  p.style.border = "2px solid green";
+  user.push({
+    email:email,
+    pass:pass
+  });
+  localStorage.setItem("user",JSON.stringify(user));
+  Toast("Account created successfully! You can now log in. 🚀");
+}
+}
+function show(){
+  let p=document.getElementById("password");
+  if(p.type === "password"){
+    p.type="text";
+  }
+  else{
+    p.type="password";
+  }
+}
+//----Popup--Toast//
+function Toast(message){
+  let toast=document.getElementById("popup");
+  toast.style.display="flex";
+let text=document.getElementById("text");
+text.innerHTML=message;
+}
+function Close(){
+  document.getElementById("popup").style.display="none";
+  location.reload();
+}
+</script>
+</html>
+
+
+
+          
+
+
+
+        
+
+
+
+
+    
+    
+    
+    
+
+          
+    
+
+
+          
+        
+  
+    
+            
+
